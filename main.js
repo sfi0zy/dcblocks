@@ -14,29 +14,34 @@ define(function (require, exports, module) {
     var getCommentContent = function (line, cursorPosition) {
         var words;
         line = line.substring(0, cursorPosition);
-        words = line.split(/\W/);
+        words = line.split(/[^a-zA-Z0-9-]/);
         return words[words.length - 1];
     };
 
     function createCommentForBlock() {
-        var editor, content, cursorPosition, newCursorPosition;
+        var editor, language, content, cursorPosition, newCursorPosition;
         
         editor = EditorManager.getFocusedEditor();
         
         if (editor) {
-            cursorPosition = editor.getCursorPos();
-            content = getCommentContent(editor.document.getLine(cursorPosition.line), cursorPosition.ch).toUpperCase();
+            language = editor.document.getLanguage().getName();
 
-            editor.document.replaceRange("", {
-                line: cursorPosition.line,
-                ch:   cursorPosition.ch - content.toString().length
-            }, cursorPosition);
-            
-            cursorPosition = editor.getCursorPos();
-            editor.document.replaceRange("<!-- " + content + " -->", cursorPosition);
-            newCursorPosition = editor.getCursorPos();
-            editor.document.replaceRange("<!-- END " + content + " -->", newCursorPosition);
-            editor.setCursorPos(newCursorPosition.line, newCursorPosition.ch);
+            if (language == "HTML" || language == "XML") {
+                cursorPosition = editor.getCursorPos();
+                content = getCommentContent(editor.document.getLine(cursorPosition.line), cursorPosition.ch).toUpperCase();
+                content = content.replace(/-/g, " ");
+
+                editor.document.replaceRange("", {
+                    line: cursorPosition.line,
+                    ch:   cursorPosition.ch - content.toString().length
+                }, cursorPosition);
+
+                cursorPosition = editor.getCursorPos();
+                editor.document.replaceRange("<!-- " + content + " -->", cursorPosition);
+                newCursorPosition = editor.getCursorPos();
+                editor.document.replaceRange("<!-- END " + content + " -->", newCursorPosition);
+                editor.setCursorPos(newCursorPosition.line, newCursorPosition.ch);
+            }
         }
     }
 

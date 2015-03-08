@@ -14,6 +14,15 @@ And now press this keys, You'll see this:
 ```html
 <!-- HEADER --><!-- END HEADER -->
 ```
+You can also use symbol "-" to create block with multiple words, for example
+```html
+main-site-navigation
+```
+After pressing "Ctrl+B", You'll see this:
+```html
+<!-- MAIN SITE NAVIGATION --><!-- END MAIN SITE NAVIGATION -->
+```
+This extension is very useful in combination with Emmet. Enjoy it!
 
 ###License
 MIT
