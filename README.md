@@ -5,7 +5,7 @@ This is an extension for Brackets, which adds ability to easy creation of commen
 Sometimes we need to write HTML document and then send it to the programmers. They want to have ability to easily find main blocks of code (if the document is big) - and we must to write comments for this task. This plugin allows us to write this comments faster.
 
 ###Installing
-Clone this repository and move it to Brackets extensions folder (*Help > Show Extensions Folder*), than reload Brackets.
+You can open *Extension Manager* in Brackets and find this extension by name - "DCBlocks"
 
 ###Usage
 
