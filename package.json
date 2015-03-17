@@ -3,7 +3,7 @@
     "title": "DCBlocks",
     "description": "Adds support for easily creating of comments for DOM elements in HTML/XML code to Brackets",
     "homepage": "https://github.com/sfi0zy/dcblocks/",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "Ivan Bogachev <sfi0zy@gmail.com> (http://sfi0zy.github.io/)",
     "license": "MIT",
     "engines": {

@@ -11,7 +11,7 @@ You can open *Extension Manager* in Brackets and find this extension by name - "
 
 ![Screencast of DCBlocks usage](http://zippy.gfycat.com/CoarseCluelessBull.gif)
 
-Usage is "Emmet-like": type any word and press "Ctrl+B". For example You write
+Usage is "Emmet-like": type any word and press "Ctrl+B" (or "Cmd-B" for MacOS). For example You write
 ```html
 header
 ```
@@ -20,6 +20,13 @@ And now press this keys, You'll see this:
 <!-- HEADER --><!-- END HEADER -->
 ```
 You can also use symbol "-" to create block with multiple words. This extension is very useful in combination with Emmet. Enjoy it!
+
+If You want to use another shortcut, You can open *keymap.json* using *Debug > Open User Key Map* and add Your own shortcut by adding
+```
+"overrides": {
+    "Your shortcut": "dcblocks-brackets.createCommentForBlock"
+}
+```
 
 ###License
 MIT

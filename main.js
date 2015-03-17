@@ -49,6 +49,9 @@ define(function (require, exports, module) {
     
     CommandManager.register("Create comment for block", CID_CREATE_COMMENT, createCommentForBlock);
     
-    KeyBindingManager.removeBinding("Ctrl-B"); // "Ctrl-B" combination is already assigned to cmd.addNextMatch
-    KeyBindingManager.addBinding(CID_CREATE_COMMENT, "Ctrl-B");
+    KeyBindingManager.removeBinding("Ctrl-B"); // "Ctrl-B" combination is already assigned to cmd.addNextMat
+    KeyBindingManager.removeBinding("Cmd-B");
+
+    KeyBindingManager.addBinding(CID_CREATE_COMMENT, "Ctrl-B", "win");
+    KeyBindingManager.addBinding(CID_CREATE_COMMENT, "Cmd-B", "mac");
 });
