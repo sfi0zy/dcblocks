@@ -9,7 +9,9 @@ define(function (require, exports, module) {
 
     var CommandManager    = brackets.getModule("command/CommandManager"),
         EditorManager     = brackets.getModule("editor/EditorManager"),
-        KeyBindingManager = brackets.getModule("command/KeyBindingManager");
+        KeyBindingManager = brackets.getModule("command/KeyBindingManager"),
+        Menus             = brackets.getModule("command/Menus"),
+        AppInit           = brackets.getModule("utils/AppInit");
     
     var getCommentContent = function (line, cursorPosition) {
         var words;
@@ -18,7 +20,7 @@ define(function (require, exports, module) {
         return words[words.length - 1];
     };
 
-    function createCommentForBlock() {
+    var createCommentForBlock = function () {
         var editor, language, content, cursorPosition, newCursorPosition;
         
         editor = EditorManager.getFocusedEditor();
@@ -43,15 +45,18 @@ define(function (require, exports, module) {
                 editor.setCursorPos(newCursorPosition.line, newCursorPosition.ch);
             }
         }
-    }
-
-    var CID_CREATE_COMMENT = "dcblocks-brackets.createCommentForBlock";
+    };
     
-    CommandManager.register("Create comment for block", CID_CREATE_COMMENT, createCommentForBlock);
     
-    KeyBindingManager.removeBinding("Ctrl-B"); // "Ctrl-B" combination is already assigned to cmd.addNextMat
-    KeyBindingManager.removeBinding("Cmd-B");
-
-    KeyBindingManager.addBinding(CID_CREATE_COMMENT, "Ctrl-B", "win");
-    KeyBindingManager.addBinding(CID_CREATE_COMMENT, "Cmd-B", "mac");
+    AppInit.appReady(function() {
+        var CID_CREATE_COMMENT = "dcblocks-brackets.createCommentForBlock";
+    
+        CommandManager.register("Create comment for code block", CID_CREATE_COMMENT, createCommentForBlock);
+        
+        KeyBindingManager.removeBinding("Ctrl-B"); // "Ctrl-B" combination is already assigned to cmd.addNextMat
+        
+        var menu = Menus.getMenu(Menus.AppMenuBar.EDIT_MENU);
+        menu.addMenuDivider();
+        menu.addMenuItem(CID_CREATE_COMMENT, "Ctrl-B");
+    });
 });

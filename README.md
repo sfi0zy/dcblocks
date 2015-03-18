@@ -11,7 +11,7 @@ You can open *Extension Manager* in Brackets and find this extension by name - "
 
 ![Screencast of DCBlocks usage](http://zippy.gfycat.com/CoarseCluelessBull.gif)
 
-Usage is "Emmet-like": type any word and press "Ctrl+B" (or "Cmd-B" for MacOS). For example You write
+Usage is "Emmet-like": type any word and press "Ctrl+B". For example You write
 ```html
 header
 ```
